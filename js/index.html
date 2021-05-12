@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="post" onsubmit="return submitUserForm();">
+        <div class="g-recaptcha" data-sitekey="6Lc3hNEaAAAAAIuZ4UCTIGb2Cj1Dx_rdSyivJSgV" data-callback="verifyCaptcha"></div>
+        <div id="g-recaptcha-error"></div>
+        <input type="submit" name="submit" value="Submit" />
+    </form>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script>
+    function submitUserForm() {
+        var response = grecaptcha.getResponse();
+        if(response.length == 0) {
+            document.getElementById('g-recaptcha-error').innerHTML = '<span style="color:red;">This field is required.</span>';
+            return false;
+        }
+        return true;
+    }
+     
+    function verifyCaptcha() {
+        document.getElementById('g-recaptcha-error').innerHTML = '';
+    }
+    </script>
+</body>
+</html>
